@@ -61,7 +61,7 @@ export default function Home() {
   }
   return (
     <main className='flex justify-center items-center h-screen px-2 mx-auto select-none'>
-      <Card className='w-full'>
+      <Card className='w-full md:max-w-lg'>
         <CardHeader className="space-y-1">
           <CardTitle className="text-2xl">Frameworks</CardTitle>
           <CardDescription>
