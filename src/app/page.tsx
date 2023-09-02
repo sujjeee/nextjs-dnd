@@ -23,6 +23,7 @@ import {
 import { useState } from 'react';
 import SortableLinks from '@/components/SortableLinks';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { AddNewItem } from '@/components/AddNewItem';
 
 
 export default function Home() {
@@ -34,10 +35,10 @@ export default function Home() {
   );
 
   const [items, setItems] = useState([
-    { name: "NextJS", id: 1 },
-    { name: "ReactJS", id: 2 },
-    { name: "Astro", id: 3 },
-    { name: "Vue", id: 4 },
+    { name: "NextJS", id: 1693653637084 },
+    { name: "ReactJS", id: 1693653637086 },
+    { name: "Astro", id: 1693653637088 },
+    { name: "Vue", id: 1693653637090 },
   ]);
 
   function handleDragEnd(event: any) {
@@ -54,16 +55,24 @@ export default function Home() {
   }
 
   function handleDelete(idToDelete: number) {
-    console.log("delete hit", idToDelete);
-
-    // Use filter to create a new array without the item to be deleted
     setItems((items) => items.filter((item) => item.id !== idToDelete));
+  }
+
+  let idx = Date.now()
+  function addNewItem(newItem: any) {
+    setItems((prevItems) => [
+      ...prevItems,
+      { name: newItem, id: idx },
+    ]);
   }
   return (
     <main className='flex justify-center items-center h-screen px-2 mx-auto select-none'>
       <Card className='w-full md:max-w-lg'>
-        <CardHeader className="space-y-1">
-          <CardTitle className="text-2xl">Frameworks</CardTitle>
+        <CardHeader className="space-y-1 ">
+          <CardTitle className="text-2xl flex justify-between">
+            Frameworks
+            <AddNewItem addNewItem={addNewItem} />
+          </CardTitle>
           <CardDescription>
             List Popular web development frameworks
           </CardDescription>
@@ -84,7 +93,6 @@ export default function Home() {
           </DndContext>
         </CardContent>
       </Card>
-
     </main>
   )
 }
